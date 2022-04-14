@@ -9,7 +9,7 @@ readme = f.read()
 f.close()
 
 setup(
-    name='django-admin-views',
+    name='labcodes-django-admin-views',
     version=".".join(map(str, VERSION)),
     description='django-admin-views is a simple way to add custom admin views and direct URLs to the Django admin',
     long_description=readme,
@@ -24,7 +24,7 @@ setup(
         ]
     },
     install_requires=[
-        'django>=1.6',
+        'django>=3.0',
     ],
     tests_require=['django-coverage', 'coverage'],
     classifiers=[

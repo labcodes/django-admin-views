@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.conf.urls import *
 from django.conf import settings
 from django.contrib.auth.decorators import permission_required
-
+from django.urls import re_path
 
 ADMIN_URL_PREFIX = getattr(settings, 'ADMIN_VIEWS_URL_PREFIX', '/admin')
 
@@ -31,7 +30,8 @@ class AdminViews(admin.ModelAdmin):
                     view_func = permission_required(link[2], raise_exception=True)(view_func)
                 added_urls.extend(
                     [
-                        url(regex=r'^%s$' % link[1],
+                        re_path(
+                            r'^%s$' % link[1],
                             name=link[1],
                             view=self.admin_site.admin_view(view_func)
                         )
@@ -49,7 +49,7 @@ class AdminViews(admin.ModelAdmin):
                 self.output_urls.append((
                         'view',
                         link[0],
-                        "{}/{}/{}/{}".format(ADMIN_URL_PREFIX, info[0], info[1], link[1]),
+                        f"{ADMIN_URL_PREFIX}/{info[0]}/{info[1]}/{link[1]}",
                         link[2] if len(link) == 3 else None,
                     )
                 )
