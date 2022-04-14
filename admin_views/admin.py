@@ -14,13 +14,13 @@ class AdminViews(admin.ModelAdmin):
     """
 
     def __init__(self, *args, **kwargs):
-        super(AdminViews, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.direct_links = []
         self.local_view_names = []
         self.output_urls = []
 
     def get_urls(self):
-        original_urls = super(AdminViews, self).get_urls()
+        original_urls = super().get_urls()
         added_urls = []
 
         for link in self.admin_views:
@@ -49,7 +49,7 @@ class AdminViews(admin.ModelAdmin):
                 self.output_urls.append((
                         'view',
                         link[0],
-                        "%s/%s/%s/%s" % (ADMIN_URL_PREFIX, info[0], info[1], link[1]),
+                        "{}/{}/{}/{}".format(ADMIN_URL_PREFIX, info[0], info[1], link[1]),
                         link[2] if len(link) == 3 else None,
                     )
                 )

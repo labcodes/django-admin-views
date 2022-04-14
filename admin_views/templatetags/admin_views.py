@@ -13,14 +13,8 @@ site = import_string(conf.ADMIN_VIEWS_SITE)
 register = template.Library()
 
 
-if sys.version_info < (3,):
-    import codecs
-
-    def u(x):
-        return codecs.unicode_escape_decode(x)[0]
-else:
-    def u(x):
-        return x
+def u(x):
+    return x
 
 
 @register.simple_tag

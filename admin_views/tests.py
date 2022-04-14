@@ -8,12 +8,8 @@ from django.contrib.auth.models import User
 from django.core.management import call_command
 
 
-if sys.version_info < (3,):
-    def b(x):
-        return x
-else:
-    def b(x):
-        return x.encode("ascii")
+def b(x):
+    return x.encode("ascii")
 
 
 class AdminViewsTests(TestCase):

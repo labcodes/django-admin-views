@@ -46,7 +46,7 @@ from django_coverage.coverage_runner import CoverageRunner
 def runtests(*test_args):
     if not test_args:
         test_args = ['admin_views']
-    parent = dirname(abspath(__file__))
+    parent = dirname(__file__)
     example_project = os.path.join(parent, 'example_project')
     sys.path.insert(0, example_project)
     runner = CoverageRunner()
